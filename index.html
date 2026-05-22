@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naitik N. Taktode – Java Full Stack Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal: { 600: '#0E7B5E', 700: '#0a5e47', 400: '#2da882', 50: '#e6f7f2' },
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    .nav-link { transition: color 0.2s; }
+    .nav-link:hover { color: #0E7B5E; }
+    .card { transition: transform 0.2s, box-shadow 0.2s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.10); }
+    .skill-badge { transition: background 0.2s, color 0.2s; }
+    .skill-badge:hover { background: #0E7B5E; color: #fff; }
+    .btn-primary { transition: background 0.2s, transform 0.1s; }
+    .btn-primary:active { transform: scale(0.97); }
+    section { scroll-margin-top: 64px; }
+  </style>
+</head>
+<body class="bg-white text-gray-800 font-sans antialiased">
+
+  <!-- ── NAVBAR ───────────────────────────────────────────────────────────── -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100 transition-shadow">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <span class="font-bold text-teal-600 text-lg tracking-tight">NT.</span>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+        <a href="#about"  class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#certifications" class="nav-link">Certifications</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <!-- Mobile hamburger -->
+      <button id="menuBtn" class="md:hidden text-gray-600 focus:outline-none" aria-label="Toggle menu">
+        <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 py-4 flex flex-col gap-4 text-sm font-medium text-gray-600">
+      <a href="#about"    class="nav-link" onclick="closeMobile()">About</a>
+      <a href="#skills"   class="nav-link" onclick="closeMobile()">Skills</a>
+      <a href="#projects" class="nav-link" onclick="closeMobile()">Projects</a>
+      <a href="#experience" class="nav-link" onclick="closeMobile()">Experience</a>
+      <a href="#certifications" class="nav-link" onclick="closeMobile()">Certifications</a>
+      <a href="#contact"  class="nav-link" onclick="closeMobile()">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+  <section class="min-h-screen flex items-center bg-gradient-to-br from-teal-50 to-white pt-16">
+    <div class="max-w-5xl mx-auto px-6 py-24 flex flex-col md:flex-row items-center gap-14">
+      <!-- Avatar -->
+      <div class="flex-shrink-0">
+        <div class="w-40 h-40 rounded-full bg-teal-600 flex items-center justify-center text-white text-5xl font-bold shadow-lg select-none">
+          NT
+        </div>
+      </div>
+      <!-- Text -->
+      <div>
+        <p class="text-teal-600 font-semibold text-sm uppercase tracking-widest mb-2">Java Full Stack Developer</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+          Naitik N. Taktode
+        </h1>
+        <p class="text-gray-500 text-lg leading-relaxed max-w-xl mb-8">
+          Mechanical Engineering graduate transitioning into IT with hands-on experience in
+          <span class="text-teal-600 font-medium">Spring Boot, Hibernate, REST APIs</span>, and frontend development.
+          I build clean, scalable backend systems and love turning ideas into real applications.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#projects" class="btn-primary bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium text-sm">
+            View Projects
+          </a>
+          <a href="#contact" class="border border-teal-600 text-teal-600 hover:bg-teal-50 px-6 py-3 rounded-lg font-medium text-sm transition-colors">
+            Contact Me
+          </a>
+          <a href="https://github.com/naitiktaktode" target="_blank"
+             class="border border-gray-200 text-gray-600 hover:border-gray-400 px-6 py-3 rounded-lg font-medium text-sm transition-colors flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ─────────────────────────────────────────────────────────────── -->
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">About Me</h2>
+      <div class="w-12 h-1 bg-teal-600 rounded mb-8"></div>
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div class="text-gray-600 leading-relaxed space-y-4">
+          <p>
+            I'm a final-year Mechanical Engineering student at Sant Gadge Baba Amravati University with a deliberate
+            and focused career shift into software development. What started as curiosity about programming turned into
+            a 6-month intensive Java Full Stack internship at Kiran Academy, Pune.
+          </p>
+          <p>
+            I've worked on real backend systems using <strong class="text-gray-800">Spring Boot, Hibernate ORM,
+            and MySQL</strong>, and I understand how layered architecture, REST APIs, and database design connect
+            in production applications.
+          </p>
+          <p>
+            Beyond backend, I also hold a <strong class="text-gray-800">Google Cybersecurity Certificate</strong>
+            and an Ethical Hacking certification — which gives me a security-first mindset when building APIs.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-teal-50 rounded-xl p-5 text-center">
+            <p class="text-3xl font-bold text-teal-600">6</p>
+            <p class="text-sm text-gray-500 mt-1">Months Internship</p>
+          </div>
+          <div class="bg-teal-50 rounded-xl p-5 text-center">
+            <p class="text-3xl font-bold text-teal-600">3</p>
+            <p class="text-sm text-gray-500 mt-1">Projects Built</p>
+          </div>
+          <div class="bg-teal-50 rounded-xl p-5 text-center">
+            <p class="text-3xl font-bold text-teal-600">3</p>
+            <p class="text-sm text-gray-500 mt-1">Certifications</p>
+          </div>
+          <div class="bg-teal-50 rounded-xl p-5 text-center">
+            <p class="text-3xl font-bold text-teal-600">8+</p>
+            <p class="text-sm text-gray-500 mt-1">REST Endpoints Built</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ────────────────────────────────────────────────────────────── -->
+  <section id="skills" class="py-20 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Technical Skills</h2>
+      <div class="w-12 h-1 bg-teal-600 rounded mb-10"></div>
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <div>
+          <h3 class="font-semibold text-gray-700 mb-4 text-sm uppercase tracking-wide">Backend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge border border-teal-200 text-teal-700 bg-teal-50 text-sm px-3 py-1.5 rounded-lg cursor-default">Java</span>
+            <span class="skill-badge border border-teal-200 text-teal-700 bg-teal-50 text-sm px-3 py-1.5 rounded-lg cursor-default">Spring Boot</span>
+            <span class="skill-badge border border-teal-200 text-teal-700 bg-teal-50 text-sm px-3 py-1.5 rounded-lg cursor-default">Spring MVC</span>
+            <span class="skill-badge border border-teal-200 text-teal-700 bg-teal-50 text-sm px-3 py-1.5 rounded-lg cursor-default">Hibernate ORM</span>
+            <span class="skill-badge border border-teal-200 text-teal-700 bg-teal-50 text-sm px-3 py-1.5 rounded-lg cursor-default">JDBC</span>
+            <span class="skill-badge border border-teal-200 text-teal-700 bg-teal-50 text-sm px-3 py-1.5 rounded-lg cursor-default">REST APIs</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-gray-700 mb-4 text-sm uppercase tracking-wide">Frontend & DB</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge border border-gray-200 text-gray-600 bg-white text-sm px-3 py-1.5 rounded-lg cursor-default">HTML5</span>
+            <span class="skill-badge border border-gray-200 text-gray-600 bg-white text-sm px-3 py-1.5 rounded-lg cursor-default">CSS3</span>
+            <span class="skill-badge border border-gray-200 text-gray-600 bg-white text-sm px-3 py-1.5 rounded-lg cursor-default">JavaScript</span>
+            <span class="skill-badge border border-gray-200 text-gray-600 bg-white text-sm px-3 py-1.5 rounded-lg cursor-default">Tailwind CSS</span>
+            <span class="skill-badge border border-gray-200 text-gray-600 bg-white text-sm px-3 py-1.5 rounded-lg cursor-default">MySQL</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-gray-700 mb-4 text-sm uppercase tracking-wide">Tools & Security</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge border border-gray-200 text-gray-600 bg-white text-sm px-3 py-1.5 rounded-lg cursor-default">Git & GitHub</span>
+            <span class="skill-badge border border-gray-200 text-gray-600 bg-white text-sm px-3 py-1.5 rounded-lg cursor-default">Maven</span>
+            <span class="skill-badge border border-gray-200 text-gray-600 bg-white text-sm px-3 py-1.5 rounded-lg cursor-default">Postman</span>
+            <span class="skill-badge border border-gray-200 text-gray-600 bg-white text-sm px-3 py-1.5 rounded-lg cursor-default">Kali Linux</span>
+            <span class="skill-badge border border-gray-200 text-gray-600 bg-white text-sm px-3 py-1.5 rounded-lg cursor-default">Cybersecurity</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ──────────────────────────────────────────────────────────── -->
+  <section id="projects" class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Projects</h2>
+      <div class="w-12 h-1 bg-teal-600 rounded mb-10"></div>
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Project 1 -->
+        <div class="card border border-gray-100 rounded-2xl p-6 bg-white shadow-sm">
+          <div class="w-10 h-10 bg-teal-50 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-1">Student Result Portal</h3>
+          <p class="text-xs text-teal-600 font-medium mb-3">Spring Boot · Hibernate · MySQL · Postman</p>
+          <p class="text-gray-500 text-sm leading-relaxed mb-4">
+            Full REST API to manage student records and calculate results dynamically. Implements GET, POST, PUT, DELETE with Bean Validation, grade calculation, and custom exception handling.
+          </p>
+          <div class="flex gap-3 mt-auto">
+            <a href="https://github.com/naitiktaktode/student-result-portal" target="_blank"
+               class="text-xs border border-gray-200 text-gray-600 hover:border-teal-400 hover:text-teal-600 px-3 py-1.5 rounded-lg transition-colors">
+              GitHub →
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="card border border-gray-100 rounded-2xl p-6 bg-white shadow-sm">
+          <div class="w-10 h-10 bg-teal-50 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-1">Product Management System</h3>
+          <p class="text-xs text-teal-600 font-medium mb-3">Java · Hibernate · Maven · MySQL</p>
+          <p class="text-gray-500 text-sm leading-relaxed mb-4">
+            Backend CRUD application using Hibernate ORM with layered architecture (Controller, Service, DAO). Reduced manual SQL by ~70% with entity mapping and session factory configuration.
+          </p>
+          <div class="flex gap-3 mt-auto">
+            <a href="https://github.com/naitiktaktode/product-management-system" target="_blank"
+               class="text-xs border border-gray-200 text-gray-600 hover:border-teal-400 hover:text-teal-600 px-3 py-1.5 rounded-lg transition-colors">
+              GitHub →
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3 (this portfolio) -->
+        <div class="card border border-teal-200 rounded-2xl p-6 bg-teal-50 shadow-sm">
+          <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-1">Personal Portfolio Website</h3>
+          <p class="text-xs text-teal-600 font-medium mb-3">HTML · CSS · JavaScript · Tailwind CSS</p>
+          <p class="text-gray-500 text-sm leading-relaxed mb-4">
+            Responsive multi-section portfolio with smooth scroll navigation, mobile-friendly hamburger menu, animated cards, and a working contact form. Deployed on GitHub Pages.
+          </p>
+          <div class="flex gap-3 mt-auto">
+            <a href="https://github.com/naitiktaktode/portfolio" target="_blank"
+               class="text-xs border border-teal-300 text-teal-700 hover:bg-teal-100 px-3 py-1.5 rounded-lg transition-colors">
+              GitHub →
+            </a>
+            <span class="text-xs bg-teal-600 text-white px-3 py-1.5 rounded-lg">Live ✓</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ────────────────────────────────────────────────────────── -->
+  <section id="experience" class="py-20 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Experience</h2>
+      <div class="w-12 h-1 bg-teal-600 rounded mb-10"></div>
+
+      <div class="relative pl-6 border-l-2 border-teal-100">
+        <div class="absolute -left-[9px] top-1 w-4 h-4 bg-teal-600 rounded-full"></div>
+        <div class="mb-1 flex flex-wrap items-center justify-between gap-2">
+          <h3 class="font-bold text-gray-900">Trainee Developer – Kiran Academy, Pune</h3>
+          <span class="text-xs bg-teal-50 text-teal-600 border border-teal-200 px-3 py-1 rounded-full font-medium">Dec 2025 – May 2026</span>
+        </div>
+        <p class="text-sm text-gray-500 mb-4">Java Full Stack Development · 6-Month Industrial Internship</p>
+        <ul class="space-y-2 text-sm text-gray-600 list-none">
+          <li class="flex gap-2"><span class="text-teal-500 mt-0.5">▪</span> Built 8+ REST API endpoints using Spring Boot for a product inventory module with full CRUD lifecycle and proper HTTP status codes.</li>
+          <li class="flex gap-2"><span class="text-teal-500 mt-0.5">▪</span> Designed MySQL schema with 5+ related tables; used Hibernate ORM for entity mapping, reducing manual SQL by ~70%.</li>
+          <li class="flex gap-2"><span class="text-teal-500 mt-0.5">▪</span> Applied layered architecture (Controller → Service → DAO) across all projects for maintainable, testable code.</li>
+          <li class="flex gap-2"><span class="text-teal-500 mt-0.5">▪</span> Worked in an Agile-style team of 4 trainees; participated in weekly code reviews and sprint planning.</li>
+          <li class="flex gap-2"><span class="text-teal-500 mt-0.5">▪</span> Tested all endpoints with Postman and managed source code via Git and GitHub.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CERTIFICATIONS ────────────────────────────────────────────────────── -->
+  <section id="certifications" class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Certifications</h2>
+      <div class="w-12 h-1 bg-teal-600 rounded mb-10"></div>
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="border border-gray-100 rounded-2xl p-6 shadow-sm">
+          <div class="text-2xl mb-3">🎓</div>
+          <h3 class="font-bold text-gray-900 text-sm mb-1">Java Full Stack Web Development</h3>
+          <p class="text-xs text-gray-500">The Kiran Academy, Pune · 2026</p>
+        </div>
+
+        <div class="border border-gray-100 rounded-2xl p-6 shadow-sm">
+          <div class="text-2xl mb-3">🛡️</div>
+          <h3 class="font-bold text-gray-900 text-sm mb-1">Google Professional Cybersecurity Certificate</h3>
+          <p class="text-xs text-gray-500">Coursera / Google · 2025</p>
+        </div>
+
+        <div class="border border-gray-100 rounded-2xl p-6 shadow-sm">
+          <div class="text-2xl mb-3">🔐</div>
+          <h3 class="font-bold text-gray-900 text-sm mb-1">Ethical Hacking</h3>
+          <p class="text-xs text-gray-500">Udemy / Z Security · 2025</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ───────────────────────────────────────────────────────────── -->
+  <section id="contact" class="py-20 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Get In Touch</h2>
+      <div class="w-12 h-1 bg-teal-600 rounded mb-10"></div>
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+
+        <div>
+          <p class="text-gray-600 leading-relaxed mb-6">
+            I'm actively looking for entry-level Java Developer or Full Stack roles in Pune. If you have an opportunity or just want to chat about tech, feel free to reach out!
+          </p>
+          <div class="space-y-4 text-sm text-gray-600">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-teal-50 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <a href="mailto:naitiktaktode@gmail.com" class="hover:text-teal-600 transition-colors">naitiktaktode@gmail.com</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-teal-50 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <span>+91-8459761348</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-teal-50 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4 text-teal-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </div>
+              <a href="https://github.com/naitiktaktode" target="_blank" class="hover:text-teal-600 transition-colors">github.com/naitiktaktode</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-teal-50 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4 text-teal-600" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </div>
+              <a href="https://linkedin.com/in/naitiktaktode" target="_blank" class="hover:text-teal-600 transition-colors">linkedin.com/in/naitiktaktode</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+          <div id="formMsg" class="hidden mb-4 text-sm text-teal-700 bg-teal-50 border border-teal-200 rounded-lg px-4 py-3">
+            ✓ Message sent! I'll get back to you soon.
+          </div>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1.5">Your Name</label>
+              <input id="cName" type="text" placeholder="Rahul Sharma"
+                class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1.5">Email</label>
+              <input id="cEmail" type="email" placeholder="rahul@company.com"
+                class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1.5">Message</label>
+              <textarea id="cMsg" rows="4" placeholder="Hi Naitik, I'd like to discuss a Java developer role..."
+                class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent transition resize-none"></textarea>
+            </div>
+            <button onclick="sendMessage()"
+              class="w-full bg-teal-600 hover:bg-teal-700 text-white py-2.5 rounded-lg font-medium text-sm transition-colors">
+              Send Message
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────────────────────── -->
+  <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+    <p>© 2026 Naitik N. Taktode · Built with HTML, Tailwind CSS & JavaScript · Deployed on GitHub Pages</p>
+  </footer>
+
+  <!-- ── SCRIPTS ───────────────────────────────────────────────────────────── -->
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    function closeMobile() {
+      mobileMenu.classList.add('hidden');
+    }
+
+    // Navbar shadow on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 10) {
+        nav.classList.add('shadow-md');
+      } else {
+        nav.classList.remove('shadow-md');
+      }
+    });
+
+    // Contact form – opens mailto (works without a backend)
+    function sendMessage() {
+      const name = document.getElementById('cName').value.trim();
+      const email = document.getElementById('cEmail').value.trim();
+      const msg = document.getElementById('cMsg').value.trim();
+      if (!name || !email || !msg) {
+        alert('Please fill in all fields before sending.');
+        return;
+      }
+      const subject = encodeURIComponent('Portfolio Contact from ' + name);
+      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + msg);
+      window.location.href = 'mailto:naitiktaktode@gmail.com?subject=' + subject + '&body=' + body;
+      document.getElementById('formMsg').classList.remove('hidden');
+      document.getElementById('cName').value = '';
+      document.getElementById('cEmail').value = '';
+      document.getElementById('cMsg').value = '';
+    }
+  </script>
+
+</body>
+</html>
